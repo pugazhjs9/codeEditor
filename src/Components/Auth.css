@@ -1,5 +1,11 @@
-/* Auth.css */
+/* Reset some basic elements for cross-browser consistency */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
+/* Main container */
 .container {
   display: flex;
   flex-direction: column;
@@ -13,15 +19,17 @@
   padding: 1rem;
 }
 
+/* Form container */
 .form-container {
   width: 100%;
   max-width: 28rem; /* Max-w-md */
   padding: 2rem;
-  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white for better contrast */
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow-lg */
   border-radius: 0.5rem; /* Rounded-lg */
 }
 
+/* Title styling */
 .title {
   font-size: 1.5rem; /* Text-2xl */
   font-weight: 700; /* Font-bold */
@@ -29,6 +37,7 @@
   text-align: center;
 }
 
+/* Label styling */
 .label {
   display: block;
   color: #4a5568; /* Text-gray-700 */
@@ -36,6 +45,7 @@
   margin-bottom: 0.5rem; /* Mb-2 */
 }
 
+/* Input fields styling */
 .input {
   width: 100%;
   padding: 0.5rem 0.75rem;
@@ -49,6 +59,7 @@
   box-shadow: 0 0 0 2px #3b82f6; /* Focus:ring-blue-500 */
 }
 
+/* Submit button styling */
 .submit-button {
   width: 100%;
   padding: 0.5rem 1rem;
@@ -65,6 +76,7 @@
   background-color: #2563eb; /* Hover:bg-blue-600 */
 }
 
+/* Switch button styling */
 .switch-button {
   width: 100%;
   margin-top: 1rem; /* Mt-4 */
@@ -80,4 +92,56 @@
 
 .switch-button:hover {
   background-color: #cbd5e0; /* Hover:bg-gray-400 */
+}
+
+/* Responsive design */
+
+/* Small devices (up to 480px) */
+@media (max-width: 480px) {
+  .form-container {
+    padding: 1rem; /* Reduce padding */
+  }
+
+  .title {
+    font-size: 1.25rem; /* Slightly smaller title font size */
+  }
+
+  .submit-button,
+  .switch-button {
+    font-size: 0.875rem; /* Smaller button font size */
+    padding: 0.4rem 0.8rem; /* Reduce padding on buttons */
+  }
+}
+
+/* Medium devices (481px to 768px) */
+@media (min-width: 481px) and (max-width: 768px) {
+  .form-container {
+    padding: 1.5rem; /* Medium padding */
+    max-width: 24rem; /* Slightly smaller form width */
+  }
+
+  .title {
+    font-size: 1.4rem;
+  }
+
+  .submit-button,
+  .switch-button {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+}
+
+/* Large devices (769px and up) */
+@media (min-width: 769px) {
+  .container {
+    padding: 2rem; /* Increase padding for large devices */
+  }
+
+  .form-container {
+    max-width: 30rem; /* Slightly larger max-width for form */
+  }
+
+  .title {
+    font-size: 1.75rem; /* Increase title size */
+  }
 }
