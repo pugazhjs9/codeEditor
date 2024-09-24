@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { signup, login } from './api';
 import './Auth.css'; // Import the CSS file
@@ -11,15 +11,17 @@ function Auth() {
     password: ''
   });
   const [isSignup, setIsSignup] = useState(true);
-  const [isLoading, setIsLoading] = useState(false); // New loading state
+  const [isLoading, setIsLoading] = useState(false); // Loading state
 
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
+  // Memoized handler to avoid unnecessary re-renders
+  const handleChange = useCallback((e) => {
+    setFormData(prevData => ({
+      ...prevData,
       [e.target.name]: e.target.value
-    });
-  };
+    }));
+  }, []);
 
+  // Clear form inputs
   const clearForm = () => {
     setFormData({
       name: '',
@@ -28,29 +30,30 @@ function Auth() {
     });
   };
 
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     const { name, email, password } = formData;
 
     try {
-      setIsLoading(true); // Set loading to true when submission starts
+      setIsLoading(true); // Show loading indicator
 
+      // Fire API call
       const response = isSignup ? await signup({ name, email, password }) : await login({ email, password });
-      setIsLoading(false); // Stop loading when the API responds
-      alert(isSignup ? 'Signup successful!' : 'Login successful!');
-      clearForm();
 
       if (isSignup) {
-        navigate('/auth');
+        clearForm(); // Clear the form
+        navigate('/auth'); // Immediately navigate to login page after signup
       } else {
         localStorage.setItem('token', response.token);
         const userEmail = email.split('@')[0];
-        localStorage.setItem('user', userEmail); 
-        navigate('/home');
+        localStorage.setItem('user', name);
+        navigate('/home'); // Immediately navigate to the home page after login
       }
     } catch (error) {
-      setIsLoading(false); // Stop loading on error as well
       alert(error.message || 'Something went wrong');
+    } finally {
+      setIsLoading(false); // Hide loading indicator after the operation is completed
     }
   };
 

@@ -3,7 +3,28 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: 'Poppins', sans-serif; /* Use a modern font */
 }
+
+
+/* Big background text */
+.container::before {
+  content: "Code Editor"; /* The big background text */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 8rem; /* Adjusted large text size */
+  font-weight: 800; /* Bold */
+  color: rgba(255, 255, 255, 0.1); /* Semi-transparent white */
+  text-transform: uppercase; /* Uppercase letters */
+  letter-spacing: 1.5rem; /* Adjusted letter spacing */
+  z-index: 0; /* Behind everything else */
+  pointer-events: none; /* Don't interfere with clicks */
+  white-space: nowrap; /* Prevent the text from breaking into multiple lines */
+  
+}
+
 
 /* Main container */
 .container {
@@ -12,86 +33,113 @@
   align-items: center;
   justify-content: center; /* Center content vertically */
   min-height: 100vh;
-  background-image: url('https://static1.makeuseofimages.com/wordpress/wp-content/uploads/2018/07/codepen-features.jpg');
-  background-size: cover; /* Ensure the image covers the entire container */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Prevent repeating */
-  padding: 1rem;
+  /* background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);  */
+  background-image: url("https://img.freepik.com/premium-photo/boy-is-using-computer-with-computer-screen-showing-graph_1279764-21588.jpg?size=626&ext=jpg");
+  padding: 2rem;
+  transition: all 0.3s ease-in-out;
+  overflow: hidden; /* Prevent content from being cut off */
 }
 
 /* Form container */
 .form-container {
   width: 100%;
   max-width: 28rem; /* Max-w-md */
-  padding: 2rem;
-  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow-lg */
-  border-radius: 0.5rem; /* Rounded-lg */
+  padding: 3rem; /* Extra padding for breathing space */
+  background-color: #ffffff; /* Solid white background */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1); /* Shadow-xl */
+  border-radius: 1rem; /* Rounded-xl */
+  transition: all 0.3s ease-in-out;
+  animation: fadeIn 0.8s ease-in-out; /* Fade-in effect */
 }
 
 /* Title styling */
 .title {
-  font-size: 1.5rem; /* Text-2xl */
+  font-size: 2rem; /* Larger title */
   font-weight: 700; /* Font-bold */
   margin-bottom: 1.5rem; /* Mb-6 */
   text-align: center;
+  color: #4a5568; /* Text-gray-700 */
 }
 
 /* Label styling */
 .label {
   display: block;
-  color: #4a5568; /* Text-gray-700 */
+  color: #2d3748; /* Text-gray-800 */
   font-weight: 500; /* Font-medium */
   margin-bottom: 0.5rem; /* Mb-2 */
+  font-size: 0.95rem;
 }
 
 /* Input fields styling */
 .input {
   width: 100%;
-  padding: 0.5rem 0.75rem;
+  padding: 0.75rem 1rem;
   border: 1px solid #e2e8f0; /* Border-gray-300 */
   border-radius: 0.5rem; /* Rounded-lg */
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05); /* Shadow-sm */
+  font-size: 1rem;
+  background-color: #f7fafc; /* Light background for input */
+  transition: box-shadow 0.3s ease-in-out;
 }
 
 .input:focus {
   outline: none;
-  box-shadow: 0 0 0 2px #3b82f6; /* Focus:ring-blue-500 */
+  box-shadow: 0 0 0 3px rgba(118, 75, 162, 0.3); /* Subtle purple ring */
 }
 
 /* Submit button styling */
 .submit-button {
   width: 100%;
-  padding: 0.5rem 1rem;
-  background-color: #3b82f6; /* Blue-500 */
+  padding: 0.75rem 1.5rem;
+  background-color: #764ba2; /* Purple */
   color: #ffffff; /* White */
   font-weight: 600; /* Font-semibold */
-  border-radius: 0.5rem; /* Rounded-lg */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow-md */
+  font-size: 1.1rem; /* Slightly larger */
+  border-radius: 0.75rem; /* Rounded-lg */
+  box-shadow: 0 6px 15px rgba(118, 75, 162, 0.4); /* Shadow with purple tint */
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
 }
 
 .submit-button:hover {
-  background-color: #2563eb; /* Hover:bg-blue-600 */
+  background-color: #5c3188; /* Darker purple on hover */
+  transform: translateY(-2px); /* Subtle lift on hover */
+}
+
+.submit-button:active {
+  transform: translateY(0); /* Button comes back on click */
 }
 
 /* Switch button styling */
 .switch-button {
   width: 100%;
-  margin-top: 1rem; /* Mt-4 */
-  padding: 0.5rem 1rem;
+  margin-top: 1.5rem; /* Mt-6 */
+  padding: 0.75rem 1.5rem;
   background-color: #e2e8f0; /* Gray-300 */
   color: #1a202c; /* Text-gray-800 */
   font-weight: 600; /* Font-semibold */
-  border-radius: 0.5rem; /* Rounded-lg */
+  border-radius: 0.75rem; /* Rounded-lg */
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow-md */
   border: none;
   cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
 }
 
 .switch-button:hover {
-  background-color: #cbd5e0; /* Hover:bg-gray-400 */
+  background-color: #cbd5e0; /* Lighter gray on hover */
+}
+
+/* Subtle animations for better UX */
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 /* Responsive design */
@@ -99,35 +147,35 @@
 /* Small devices (up to 480px) */
 @media (max-width: 480px) {
   .form-container {
-    padding: 1rem; /* Reduce padding */
+    padding: 1.5rem; /* Reduce padding */
   }
 
   .title {
-    font-size: 1.25rem; /* Slightly smaller title font size */
+    font-size: 1.5rem; /* Slightly smaller title font size */
   }
 
   .submit-button,
   .switch-button {
     font-size: 0.875rem; /* Smaller button font size */
-    padding: 0.4rem 0.8rem; /* Reduce padding on buttons */
+    padding: 0.5rem 1rem; /* Reduce padding on buttons */
   }
 }
 
 /* Medium devices (481px to 768px) */
 @media (min-width: 481px) and (max-width: 768px) {
   .form-container {
-    padding: 1.5rem; /* Medium padding */
+    padding: 2rem; /* Medium padding */
     max-width: 24rem; /* Slightly smaller form width */
   }
 
   .title {
-    font-size: 1.4rem;
+    font-size: 1.75rem;
   }
 
   .submit-button,
   .switch-button {
     font-size: 1rem;
-    padding: 0.5rem 1rem;
+    padding: 0.75rem 1.25rem;
   }
 }
 
@@ -138,10 +186,29 @@
   }
 
   .form-container {
-    max-width: 30rem; /* Slightly larger max-width for form */
+    max-width: 32rem; /* Slightly larger max-width for form */
   }
 
   .title {
-    font-size: 1.75rem; /* Increase title size */
+    font-size: 2.25rem; /* Increase title size */
   }
 }
+
+
+/* Adjust background text size for smaller screens */
+@media (max-width: 768px) {
+  .container::before {
+    font-size: 5rem; /* Smaller font size for smaller screens */
+    letter-spacing: 1rem; /* Adjusted letter spacing */
+  }
+}
+
+@media (max-width: 480px) {
+  .container::before {
+    font-size: 3rem; /* Further reduce font size on very small screens */
+    letter-spacing: 0.5rem; /* Adjusted letter spacing */
+  }
+}
+
+
+

@@ -34,11 +34,14 @@ function Home() {
   const navigate = useNavigate();
 
   const handleReset = () => {
-    localStorage.clear();
+    localStorage.removeItem('html');
+    localStorage.removeItem('css');
+    localStorage.removeItem('js');
     setHtml(text_html);
     setCss(text_css);
     setJs(text_js);
   };
+  
 
   const handleLogout = () => {
     localStorage.removeItem('token');
