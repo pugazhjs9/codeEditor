@@ -31,31 +31,33 @@ function Auth() {
   };
 
   // Handle form submission
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    const { name, email, password } = formData;
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  const { name, email, password } = formData;
 
-    try {
-      setIsLoading(true); // Show loading indicator
+  try {
+    setIsLoading(true); // Show loading indicator
 
-      // Fire API call
-      const response = isSignup ? await signup({ name, email, password }) : await login({ email, password });
+    // Fire API call
+    const response = isSignup ? await signup({ name, email, password }) : await login({ email, password });
 
-      if (isSignup) {
-        clearForm(); // Clear the form
-        navigate('/auth'); // Immediately navigate to login page after signup
-      } else {
-        localStorage.setItem('token', response.token);
-        const userEmail = email.split('@')[0];
-        localStorage.setItem('user', name);
-        navigate('/home'); // Immediately navigate to the home page after login
-      }
-    } catch (error) {
-      alert(error.message || 'Something went wrong');
-    } finally {
-      setIsLoading(false); // Hide loading indicator after the operation is completed
+    if (isSignup) {
+      localStorage.setItem('token', response.token); // Store token after signup
+      localStorage.setItem('user', name); // Store user name after signup
+      navigate('/home'); // Navigate directly to home page after signup
+    } else {
+      localStorage.setItem('token', response.token); // Store token after login
+      const userEmail = email.split('@')[0];
+      localStorage.setItem('user', name);
+      navigate('/home'); // Immediately navigate to the home page after login
     }
-  };
+  } catch (error) {
+    alert(error.message || 'Something went wrong');
+  } finally {
+    setIsLoading(false); // Hide loading indicator after the operation is completed
+  }
+};
+
 
   return (
     <div className="container">
